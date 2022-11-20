@@ -1,0 +1,10 @@
+<div id="contenedor">
+    <div class="card text-black bg-warning mb-3" id="list">
+        <div class="card-body">
+          <h4 class="card-title">Blog de la Clase 2ºDAM</h4>
+        </div>
+      </div>
+
+    <app-entrada-clase *ngFor="let entradaClase of listadoEntradasClase" [entradaClase]="entradaClase" (click)="mostrarTitulo(entradaClase.titulo)"></app-entrada-clase>
+    
+</div>

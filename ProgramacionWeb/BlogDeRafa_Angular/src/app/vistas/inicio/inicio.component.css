@@ -1,0 +1,17 @@
+svg {
+	max-height: 40vh;
+	-webkit-box-reflect: below -2px linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+}
+
+#contenedor-top{
+	padding-top: 2rem;
+}
+
+#alerta{
+	padding-top: 2rem;
+}
+
+h3{
+	padding-top: 2rem;
+}
+

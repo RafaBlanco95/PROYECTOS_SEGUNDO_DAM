@@ -1,0 +1,13 @@
+
+<div id="listado-api-json">
+    <div class="card text-black bg-warning mb-3" id="list">
+        <div class="card-body">
+          <h4 class="card-title">Blog de JSONPLACEHOLDER</h4>
+        </div>
+    </div>
+
+    <app-entrada-api-json *ngFor="let entradaApiJson of listadoEntradasApiJson" [entradaApiJson]="entradaApiJson" (click)="mostrarTitulo(entradaApiJson.title)"></app-entrada-api-json>
+    
+</div>
+
+

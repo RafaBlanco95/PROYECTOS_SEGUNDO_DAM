@@ -1,0 +1,12 @@
+
+<div id="listadoEscrito">
+    <div class="card text-black bg-warning mb-3" id="list">
+        
+        <div class="card-body">
+          <h4 class="card-title">Blog Escrito Personalmente</h4>
+        </div>
+      </div>
+
+    <app-entrada-escrita *ngFor="let entradaEscrita of listadoEntradasEscritas" [entradaEscrita]="entradaEscrita" (click)="mostrarTitulo(entradaEscrita.titulo)"></app-entrada-escrita>
+    
+</div>
