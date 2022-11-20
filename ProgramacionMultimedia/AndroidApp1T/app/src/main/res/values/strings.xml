@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">AndroidApp1T</string>
+    <string name="app_title">RafApp</string>
+    <string name="welcome">¡Bienvenido! Selecciona una de las cuatro funcionalidades</string>
+    <string name="calc_label">Calculadora</string>
+    <string name="alumnList_label">Listado de alumnos</string>
+    <string name="webView_label">Google FrontPage link</string>
+    <string name="newFunction_label">Nueva Funcionalidad</string>
+    <string name="list">Listado de alumnos de 2º de DAM de las Escuelas Salesianas de María Auxiliadora</string>
+    <string name="adition">Suma</string>
+    <string name="substraction">Resta</string>
+    <string name="product">Multiplicación</string>
+    <string name="division">División</string>
+    <string-array name="operaciones">
+        <item> Sumar </item>
+        <item> Restar </item>
+        <item> Multiplicar </item>
+        <item> Dividir</item>
+    </string-array>
+    <string name="first_value">Primer valor</string>
+    <string name="second_value">Segundo valor</string>
+    <string name="result">Resultado</string>
+    <string name="calculate">Calcular</string>
+    <string name="spinner">Calculator Options Spinner</string>
+    <string name="goBack">Volver</string>
+    <string name="placeholder">Seleccione un alumno para conocer su nota</string>
+    <string name="txt_web">Ej: google.com </string>
+    <string name="BotonIR">Ir al sitio</string>
+    <string name="BotonCerrar"> Cerrar</string>
+    <string name="first_image">First image</string>
+    <string name="second_image">Second image</string>
+    <string name="third_image">Third image</string>
+    <string name="fourth_image">Fourth image</string>
+    <string name="fifth_image">Fifth image</string>
+    <string name="sixth_image">Sixth image</string>
+    <string name="seventh_image">Seventh image</string>
+    <string name="eighth_image">Eighth image</string>
+    <string name="ninth_image">Ninth image </string>
+    <string name="one_player">Single Player</string>
+    <string name="two_players">Two Players</string>
+    <string name="wins">Victorias</string>
+    <string name="loses">Derrotas</string>
+    <string name="ties">Empates</string>
+    <string name="alumnList">Alumnado de 2º de DAM de las Escuelas Salesianas de María Auxiliadora de Nervión</string>
+    <string name="webView">Buscador Web exclusivo y asociado a su navegador Web favorito </string>
+    <string name="tictactoe">¡Tres en Raya!</string>
+    <string name="tictactoeGamemode">Seleccione el número de jugadores </string>
+    <string name="onePlayer">Un jugador </string>
+    <string name="twoPlayers">Dos jugadores</string>
+</resources>
