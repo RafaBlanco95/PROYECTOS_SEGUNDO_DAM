@@ -1,0 +1,9 @@
+body {
+	background-color: var(--bg);
+}
+
+.pacman {
+	fill: #f5c42c
+}
+
+

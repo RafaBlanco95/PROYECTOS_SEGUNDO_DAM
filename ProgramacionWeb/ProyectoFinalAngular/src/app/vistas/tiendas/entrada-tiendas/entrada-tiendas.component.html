@@ -1,0 +1,9 @@
+<div class="card mb-3 " >
+    <img [src]="entradaTienda.image_background" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ entradaTienda.name }}</h5>
+        <span class="badge bg-primary mb-1"> Juegos:{{ entradaTienda.games_count }}</span> <br/>
+        <button class=" bg-primary  mb-1"><a  class="text-black text-decoration-none" href="https://{{ entradaTienda.domain }}">{{ entradaTienda.domain }}</a></button>
+        <p class="card-text"> {{ entradaTienda.description}}</p>
+    </div>
+  </div>
