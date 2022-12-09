@@ -1,0 +1,30 @@
+    <div class="container col-2"> 
+      <div class="guybrush"></div>
+    </div>
+    <div class="container row-justify-content-md-left ">
+        <div class="col-3">
+          <h2 class="heading"> Formulario de Inicio de Sesión</h2>
+          <div class="container">
+            <form (ngSubmit)="submit()" #usuarioForm="ngForm">
+              <fieldset>
+          <div class="form-group">
+              <label for="nombre" class="form-label mt-4 ">Usuario</label>
+              <input type="text" class="form-control text-muted" [(ngModel)]="usuario.nombre"
+              name="nombre" #nombre="ngModel" required aria-describedby="emailHelp" placeholder="Insertar Usuario">
+              <small id="emailHelp" class="form-text text-muted">El nombre de usuario será visible en el menú de navegación.</small>
+            </div>
+            <div class="form-group">
+              <label for="contrasegna" class="form-label mt-4">Constraseña</label>
+              <input type="password" class="form-control" [(ngModel)]="usuario.contrasegna"
+              name="contrasegna" #contrasegna="ngModel" required minlength="4" placeholder="Insertar Contraseña">
+            </div>
+            <small id="emailHelp" class="form-text text-muted">La contraseña debe tener como mínimo 4 dígitos.</small><br/>
+            <button type="submit" (click)="reload_page()" [disabled]="!usuarioForm.form.valid" class="btn btn-primary mb-5">Acceder</button>
+          </fieldset>
+      </form>
+          </div>
+        </div>
+        
+       
+        </div>
+     

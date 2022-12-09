@@ -1,0 +1,12 @@
+<div class="container"> 
+
+  <h1 class="heading mt-3 mb-5 text-dark"> Creadores de Videojuegos de la API rawg.io </h1>
+  
+</div>
+<div id="juegos">
+    <div class="container">
+      <div class="row">
+        <app-entrada-creadores  *ngFor="let entradaCreador of listaEntradaCreadores" [entradaCreador]="entradaCreador" class="col-6"></app-entrada-creadores>
+    </div>
+    </div>
+  </div>

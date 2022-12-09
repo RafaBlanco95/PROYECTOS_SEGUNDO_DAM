@@ -1,0 +1,11 @@
+<div class="container"> 
+  <h1 class="heading mt-3 mb-5 text-dark"> Tiendas de Videojuegos de la API rawg.io </h1>
+</div>
+<div>
+<div>
+    <div class="container">
+      <div class="row">
+        <app-entrada-tiendas  *ngFor="let entradaTienda of listaEntradaTiendas" [entradaTienda]="entradaTienda" class="col-6"></app-entrada-tiendas>
+    </div>
+    </div>
+  </div>
