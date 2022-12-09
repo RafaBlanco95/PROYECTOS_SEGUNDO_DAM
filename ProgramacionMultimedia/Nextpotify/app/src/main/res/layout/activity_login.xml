@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="344dp"
+        android:layout_height="104dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.084">
+
+        <TextView
+            android:id="@+id/registerTitle"
+            android:layout_width="218dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/holtwood_one_sc"
+            android:text="@string/iniciar_sesion"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="106dp"
+            android:layout_height="106dp">
+
+            <ImageView
+                android:id="@+id/imageLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@mipmap/login" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="339dp"
+        android:layout_height="330dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575">
+
+        <TextView
+            android:id="@+id/userNameProfileHead"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:fontFamily="@font/holtwood_one_sc"
+            android:labelFor="@id/usuarioInicio"
+            android:text="@string/usuario_nombre"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/usuarioInicio"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:fontFamily="@font/holtwood_one_sc"
+            android:hint="@string/usuario_hint"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:textColorHint="#757575"
+            android:textSize="15sp"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="@android:color/transparent" />
+
+        <TextView
+            android:id="@+id/userPassword"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/holtwood_one_sc"
+            android:labelFor="@id/editTextTextPassword"
+            android:text="@string/contraseña"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:fontFamily="@font/holtwood_one_sc"
+            android:hint="@string/contraseña"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textColorHint="#757575"
+            android:textSize="15sp"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="138dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974">
+
+        <ImageView
+            android:id="@+id/nextButtonRegister"
+            android:layout_width="128dp"
+            android:layout_height="90dp"
+            android:contentDescription="@string/iniciar_sesion"
+            android:onClick="checkLogin"
+            app:srcCompat="@mipmap/siguiente" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nexpotify</string>
+    <string name="usuario_nombre">User:</string>
+    <string name="usuario_hint">UserName</string>
+    <string name="contraseña">Password:</string>
+    <string name="iniciar_sesion">Log In</string>
+    <string name="registrarse">Register</string>
+    <string name="titulo">Nexpotify</string>
+    <string name="nuevo_registro">Register Form</string>
+    <string name="repetir_contraseña">Password Again</string>
+    <string name="contraseñas_diferentes">Passwords don´t match</string>
+    <string name="opcion1">Option 1</string>
+    <string name="opcion2">Option 2</string>
+    <string name="opcion3">Option 3</string>
+    <string name="compartir">share</string>
+    <string name="buscar">search</string>
+    <string name="play">play</string>
+    <string name="pause">pause</string>
+    <string name="stop">stop</string>
+    <string name="repeat">repeat</string>
+    <string name="next">next</string>
+    <string name="previous">previous</string>
+    <string name="my_profile">My Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="delete_user">Delete User</string>
+    <string name="new_password">New Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="repeat_new_password">New Password Again</string>
+    <string name="player">Music Player</string>
+</resources>

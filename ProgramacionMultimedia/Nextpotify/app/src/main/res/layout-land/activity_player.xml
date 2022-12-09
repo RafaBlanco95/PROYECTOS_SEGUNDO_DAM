@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".PlayerActivity"
+    tools:layout_editor_absoluteX="10dp"
+    tools:layout_editor_absoluteY="0dp">
+
+    <ImageView
+        android:id="@+id/imageCover"
+        android:layout_width="162dp"
+        android:layout_height="136dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.145"
+        app:srcCompat="@mipmap/headset" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="68dp"
+        android:layout_height="62dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.908">
+
+        <ImageView
+            android:id="@+id/btn_before"
+            android:layout_width="61dp"
+            android:layout_height="54dp"
+            android:contentDescription="@string/previous"
+            android:onClick="previous"
+            app:srcCompat="@mipmap/anterior"
+            tools:layout_editor_absoluteX="253dp"
+            tools:layout_editor_absoluteY="397dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="62dp"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.785"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.908">
+
+        <ImageView
+            android:id="@+id/btn_stop"
+            android:layout_width="55dp"
+            android:layout_height="53dp"
+            android:contentDescription="@string/stop"
+            android:onClick="stop"
+            app:srcCompat="@mipmap/detengase"
+            tools:layout_editor_absoluteX="96dp"
+            tools:layout_editor_absoluteY="397dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="70dp"
+        android:layout_height="62dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.905">
+
+        <ImageView
+            android:id="@+id/btn_after"
+            android:layout_width="63dp"
+            android:layout_height="54dp"
+            android:contentDescription="@string/next"
+            android:onClick="next"
+            app:srcCompat="@mipmap/proximo"
+            tools:layout_editor_absoluteX="333dp"
+            tools:layout_editor_absoluteY="397dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="56dp"
+        android:layout_height="57dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.694"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.909">
+
+        <ImageView
+            android:id="@+id/btn_play"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:contentDescription="@string/previous"
+            android:onClick="playPause"
+            app:srcCompat="@mipmap/siguiente"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="397dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout4"
+        android:layout_width="68dp"
+        android:layout_height="63dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913">
+
+        <ImageView
+            android:id="@+id/btn_repeat"
+            android:layout_width="57dp"
+            android:layout_height="56dp"
+            android:contentDescription="@string/repeat"
+            android:onClick="repeat"
+            app:srcCompat="@mipmap/ir" />
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/listViewCanciones"
+        android:layout_width="310dp"
+        android:layout_height="162dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.896" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="305dp"
+        android:layout_height="81dp"
+        android:fontFamily="@font/holtwood_one_sc"
+        android:text="@string/player"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.105" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
