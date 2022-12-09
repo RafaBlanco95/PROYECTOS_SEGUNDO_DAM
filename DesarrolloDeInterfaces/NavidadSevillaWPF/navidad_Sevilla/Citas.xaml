@@ -1,0 +1,32 @@
+﻿<Window x:Class="navidadSevilla.Citas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:navidadSevilla"
+        mc:Ignorable="d"
+        Title="Citas" Height="470" Width="600">
+    <Grid Margin="0,0,0,3">
+        <Image Source="img/navidad.png" Stretch="UniformToFill" VerticalAlignment="Top" HorizontalAlignment="Left" Width="782" Margin="-171,-58,0,0"/>
+        <DataGrid x:Name="datagrid" ItemsSource="{Binding Path=listaCitas}" HorizontalAlignment="Center" Height="184" Margin="0,173,0,0" VerticalAlignment="Top" Width="488" SelectionChanged="datagrid_SelectionChanged" />
+
+        <StackPanel Margin="58,93,0,278" HorizontalAlignment="Left" Width="418" Orientation="Horizontal">
+            <Button Content="Cita Nueva" FontSize="15" FontWeight="Bold" Margin="0,0,50,0" Height="34" Width="98" Click="nuevaCita" Background="Transparent" BorderThickness="0"/>
+            <Button Content="Editar Cita" FontSize="15" FontWeight="Bold" Margin="0,0,50,0" Height="34" Width="95" Click="editarCita" Background="Transparent" BorderThickness="0"/>
+            <Button Content="Eliminar Cita   " FontSize="15" FontWeight="Bold" Height="34" Width="105" Click="eliminarCita" Background="Transparent" BorderThickness="0"/>
+        </StackPanel>
+        <Image x:Name="giralda"  Source="\img\giralda.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="62" Width="71" Margin="503,362,0,0"/>
+        <Button FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="21,38,0,0" VerticalAlignment="Top" Height="31" Width="45" Click="goBack" Background="Transparent" BorderThickness="0">
+            <Image x:Name="cross"  Source="\img\cancelar.png" VerticalAlignment="Center" Height="30" Width="48"/>
+        </Button>
+        <Button FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="138,88,0,0" VerticalAlignment="Top" Height="50" Width="42" Click="nuevaCita" Background="Transparent" BorderThickness="0">
+            <Image x:Name="agregarbutton"  Source="\img\agregar.png" Height="56" Width="40" />
+        </Button>
+        <Button FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="288,88,0,0" VerticalAlignment="Top" Height="50" Width="42" Click="editarCita" Background="Transparent" BorderThickness="0">
+            <Image x:Name="editarbutton"  Source="\img\boligrafo.png" Height="56" Width="40"/>
+        </Button>
+        <Button FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="448,88,0,0" VerticalAlignment="Top" Height="50" Width="42" Click="eliminarCita" Background="Transparent" BorderThickness="0">
+            <Image x:Name="eliminarbutton"  Source="\img\papelera.png" Height="46" Width="40"/>
+        </Button>
+    </Grid>
+</Window>

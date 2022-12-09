@@ -1,0 +1,30 @@
+﻿<Window x:Class="navidad_Sevilla.Inicio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:navidad_Sevilla"
+        mc:Ignorable="d"
+        Title="Inicio" Height="450" Width="800">
+    <Grid>
+        <Image x:Name="inicio" Margin="0" Source="\img\navidad.png" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image x:Name="giralda"  Source="\img\giralda.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="62" Width="71" Margin="702,342,0,0"/>
+        <Image x:Name="gorro"  Source="\img\sombrero-de-santa.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="134" Width="137" Margin="646,50,0,0"/>
+        <Image x:Name="arbol"  Source="\img\arbol-de-navidad.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="134" Width="137" Margin="40,201,0,0"/>
+        <TextBlock  FontFamily="Monospace" FontSize="20" FontWeight="Bold" FontStyle="Italic" Margin="228,201,190,176">
+            <TextBlock.Text>SEVILLA, UN LUGAR PARA SOÑAR</TextBlock.Text>
+        </TextBlock>
+        <TextBlock  FontFamily="Monospace" FontSize="40" FontWeight="Bold" FontStyle="Italic" Margin="77,134,67,235">
+            <TextBlock.Text>UN SUEÑO ANTES DE NAVIDAD</TextBlock.Text>
+        </TextBlock>
+        <Button Content="Espacios de Actividades    " FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="213,288,0,0" VerticalAlignment="Top" Height="43" Width="187" Click="espaciosActividades" Background="Transparent" BorderThickness="0"/>
+        <Button Content="Gestión Reservas" FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="485,289,0,0" VerticalAlignment="Top" Height="42" Width="144" Click="gestionReservas" Background="Transparent" BorderThickness="0"/>
+        <Button Click="gestionReservas" Background="Transparent" BorderThickness="0" Margin="615,253,82,68">
+            <Image x:Name="agendabutton"  Source="/img/calendario.png" Height="83" Width="90" />
+        </Button>
+        <Button Click="espaciosActividades" Background="Transparent" BorderThickness="0" Margin="383,268,315,61">
+            <Image x:Name="actividadesbutton"  Source="\img\activo-fijo.png" Height="74" Width="79" />
+        </Button>
+
+    </Grid>
+</Window>

@@ -1,0 +1,9 @@
+﻿<Application x:Class="navidad_Sevilla.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:navidad_Sevilla"
+             StartupUri="Inicio.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

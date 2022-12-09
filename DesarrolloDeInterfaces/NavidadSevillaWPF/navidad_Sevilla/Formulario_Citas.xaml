@@ -1,0 +1,77 @@
+﻿<Window x:Class="navidadSevilla.Formulario_Citas"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:navidadSevilla"
+      mc:Ignorable="d" 
+      
+      Title="Formulario de la Cita"
+        Height="500" Width="650">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>  
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type DatePicker}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+        
+    
+    <Grid Margin="0,0,10,-6">
+        <Image Source="img\navidad.png" Stretch="UniformToFill" VerticalAlignment="Top" HorizontalAlignment="Left" Height="525" Width="744" Margin="0,-32,0,0"/>
+        <TextBlock Margin="145,137,387,301" FontWeight="Bold" FontSize="15"> Nombre</TextBlock>
+        <TextBlock Margin="145,179,381,260" FontWeight="Bold" FontSize="15"> Apellidos</TextBlock>
+        <TextBlock Margin="145,225,407,224"  FontWeight="Bold" FontSize="15"> Grupo</TextBlock>
+        <TextBlock Margin="145,266,412,172"  FontWeight="Bold" FontSize="15"> Fecha</TextBlock>
+        <TextBlock Margin="145,306,412,140"  FontWeight="Bold" FontSize="15"> Turno</TextBlock>
+        <TextBlock Margin="145,350,407,90"  FontWeight="Bold" FontSize="15"> Espacio</TextBlock>
+        <TextBlock Margin="145,397,407,43"  FontWeight="Bold" FontSize="15"> Actividad</TextBlock>
+
+        <TextBox x:Name="boxNombre" HorizontalAlignment="Left" Height="23" Margin="237,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Validation.Error="validation_error" Text="{Binding Path=Nombre, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <TextBox x:Name="boxApellidos" HorizontalAlignment="Left" Height="23" Margin="237,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Validation.Error="validation_error" Text="{Binding Path=Apellidos, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <ComboBox x:Name="comboGrupo" HorizontalAlignment="Left" Margin="238,220,0,0" VerticalAlignment="Top" Width="179"  Validation.Error="validation_error" Text="{Binding Path=Grupo, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+            <ComboBoxItem Content="Si"/>
+            <ComboBoxItem Content="No"/>
+        </ComboBox>
+        <DatePicker x:Name="pickerFecha" HorizontalAlignment="Left" Height="23" Margin="238,264,0,0" VerticalAlignment="Top" Width="179" SelectedDate="{Binding Path=Fecha}"/>
+        <ComboBox x:Name="comboEspacio" HorizontalAlignment="Left" Margin="238,349,0,0" VerticalAlignment="Top" Width="179" Validation.Error="validation_error" Text="{Binding Path=Espacio, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+            <ComboBoxItem Content="Bosque Encantado"/>
+            <ComboBoxItem Content="Sevillalandia"/>
+        </ComboBox>
+        <ComboBox x:Name="comboTurno" HorizontalAlignment="Left" Margin="238,306,0,0" VerticalAlignment="Top" Width="179" Validation.Error="validation_error" Text="{Binding Path=Turno, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+            <ComboBoxItem Content="Mañana"/>
+            <ComboBoxItem Content="Tarde"/>
+
+        </ComboBox>
+        <ComboBox x:Name="comboActividad" HorizontalAlignment="Left" Margin="238,397,0,0" VerticalAlignment="Top" Width="179" Validation.Error="validation_error" Text="{Binding Path=Actividad, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+        </ComboBox>
+        <Button x:Name="Aceptar" Content="Aceptar" FontSize="15" FontWeight="Bold" Margin="454,145,86,278" Click="agregar" Background="Transparent" BorderThickness="0"/>
+        <Button x:Name="Cancelar" Content="Cancelar " FontSize="15" FontWeight="Bold" Margin="454,283,76,141" Click="cancelar" Background="Transparent" BorderThickness="0"/>
+        <Image x:Name="giralda2"  Source="\img\giralda.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="62" Width="71" Margin="523,397,0,0"/>
+        <Image x:Name="tick"  Source="\img\aceptar.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="56" Width="48" Margin="530,139,0,0"/>
+        <Button FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="534,276,0,0" VerticalAlignment="Top" Height="54" Width="66" Click="cancelar" Background="Transparent" BorderThickness="0">
+            <Image x:Name="crossbutton"  Source="\img\cancelar.png"  Height="52" Width="56"/>
+        </Button>
+    </Grid>
+</Window>

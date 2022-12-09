@@ -1,0 +1,33 @@
+﻿<Window x:Class="navidad_Sevilla.EspacioActividades"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:navidad_Sevilla"
+      mc:Ignorable="d" 
+      Title="EspacioActividades" Height="470" Width="800">
+
+    <Grid Margin="0,0,10,-6">
+        <Image x:Name="espacioActividad" Source="\img\sevillalandia.jpg" Stretch="UniformToFill" VerticalAlignment="Top" HorizontalAlignment="Right" Height="570" Width="925" Margin="0,-78,-17,0"/>
+        <TextBlock  FontFamily="Monospace" FontSize="40" FontWeight="Bold" FontStyle="Italic" Margin="128,100,128,282">
+            <TextBlock.Text>ESPACIO DE ACTIVIDADES</TextBlock.Text>
+        </TextBlock>
+        <TextBlock  FontFamily="Monospace" FontSize="20" FontWeight="Bold" FontStyle="Italic" Margin="133,183,133,230">
+            <TextBlock.Text>Selecciona un espacio para consultar sus actividades</TextBlock.Text>
+        </TextBlock>
+        <Button Content="SevillaLandia" FontSize="15" FontWeight="Bold" Margin="133,268,517,126" Click="sevillaLandia" BorderThickness="0" Background="Transparent"/>
+        <Button Content="Bosque Encantado   " FontSize="15" FontWeight="Bold" Margin="395,268,240,123" Click="bosqueEncantado" Background="Transparent" BorderThickness="0"/>
+
+        <Image x:Name="giralda"  Source="\img\giralda.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="77" Width="87" Margin="28,353,0,0"/>
+        <Button FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Height="31" Width="43" Click="goBack" Background="Transparent" BorderThickness="0">
+            <Image x:Name="cross"  Source="\img\cancelar.png" VerticalAlignment="Center" Height="30" Width="48"/>
+        </Button>
+        <Button FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="516,247,0,0" VerticalAlignment="Top" Height="90" Width="123" Click="bosqueEncantado" Background="Transparent" BorderThickness="0">
+            <Image x:Name="bosquebutton"  Source="\img\bosque.png" Height="90" Width="133"/>
+        </Button>
+        <Button FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="227,264,0,0" VerticalAlignment="Top" Height="90" Width="123" Click="sevillaLandia" Background="Transparent" BorderThickness="0">
+            <Image x:Name="porcelanabutton"  Source="\img\porcelana.png" Height="89" Width="105" />
+        </Button>
+
+    </Grid>
+</Window>
