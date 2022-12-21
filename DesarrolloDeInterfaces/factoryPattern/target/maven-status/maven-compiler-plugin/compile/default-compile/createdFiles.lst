@@ -1,0 +1,10 @@
+com\nttdata\dulces\Tarta.class
+com\nttdata\hornos\GeneradorDeDulces.class
+com\nttdata\dulces\Dulce.class
+com\nttdata\ObradorPatronFactory.class
+com\nttdata\hornos\HornoCombinado.class
+com\nttdata\dulces\Croissant.class
+com\nttdata\hornos\HornoTartas.class
+com\nttdata\hornos\HornoMagdalenas.class
+com\nttdata\dulces\Magdalena.class
+com\nttdata\hornos\HornoCroissants.class
