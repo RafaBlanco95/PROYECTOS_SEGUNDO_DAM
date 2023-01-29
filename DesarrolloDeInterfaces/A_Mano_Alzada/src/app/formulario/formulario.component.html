@@ -1,0 +1,29 @@
+<div class="jumbotron " id="contenedor-top">
+  <div class="row border-bottom border-primary justify-content-center text-center" >
+    <div class="col ">
+      <span>
+        <h1><b>Buscador de Noticias por Sección y Fecha  </b></h1>
+      </span>
+    </div>
+  </div>
+    <div class="row mt-3">
+        <div class="col-lg-8 offset-lg-2">
+            <form (ngSubmit)="buscarNoticia()">
+                <div class="form-group">
+                    <h2>Sección</h2>
+                    <select name="plataformas" [(ngModel)]="plataformaSeleccionada" class="form-control form-control-lg">
+                      <option [value]="plataforma.value" *ngFor="let plataforma of plataformas">{{ plataforma.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group mt-3">
+                    <h2>Fecha</h2>
+                    <select name="genero" [(ngModel)]="generoSeleccionado"  class="form-control form-control-lg">
+                      <option [ngValue]="genero.value" *ngFor="let genero of generos"> {{ genero.nombre }}</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block btn-lg mt-3 mb-5">Buscar</button>
+            </form>
+        </div>
+    </div>
+  </div>
+  

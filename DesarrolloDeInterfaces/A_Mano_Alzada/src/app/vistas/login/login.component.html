@@ -1,0 +1,38 @@
+<div class="container" id="contenedor-top">
+  <div class="row">
+  <div class="col-6">
+    <div class="row border-bottom border-primary justify-content-center text-center" >
+      <div class="col ">
+        <span>
+          <h1><b>Formulario de Inicio de Sesión </b></h1>
+        </span>
+      </div>
+    </div>
+    <div class="container">
+      <form (ngSubmit)="submit()" #usuarioForm="ngForm">
+        <fieldset>
+          <div class="form-group">
+            <label for="nombre" class="form-label mt-4 ">Usuario</label>
+            <input type="text" class="form-control text-muted" [(ngModel)]="usuario.nombre" name="nombre"
+              #nombre="ngModel" required aria-describedby="emailHelp" placeholder="Insertar Usuario">
+            <small id="emailHelp" class="form-text text-muted">El nombre de usuario será visible en el menú de
+              navegación.</small>
+          </div>
+          <div class="form-group">
+            <label for="contrasegna" class="form-label mt-4">Constraseña</label>
+            <input type="password" class="form-control" [(ngModel)]="usuario.contrasegna" name="contrasegna"
+              #contrasegna="ngModel" required minlength="4" placeholder="Insertar Contraseña">
+          </div>
+          <small id="emailHelp" class="form-text text-muted">La contraseña debe tener como mínimo 4
+            dígitos.</small><br />
+          <button type="submit" (click)="reload_page()" [disabled]="!usuarioForm.form.valid"
+            class="btn btn-primary mb-5">Acceder</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="col-6">
+    <img src="/assets/covid.png" class="img-fluid" alt="...">
+  </div>
+</div>
+</div>

@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/inicio"> <i class="fa-solid fa-square-pen"></i>  </a>
+    <a class="navbar-brand" routerLink="/inicio">  <b>A Mano Alzada</b> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/inicio">Portada |
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/nosotros">Sobre Nosotros |</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/noticiasHoy">Noticias Hoy |</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/buscador">Buscador <i class="fa-solid fa-magnifying-glass"></i></a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="navbar-collapse" id="navbarColor01">
+      
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="miToken==0">
+          <a class="nav-link acceso" routerLink="/login" id="acceso"> </a>
+        </li>
+        <li class="nav-item" *ngIf="miToken!=0" (click)="logout()" (click)="reload_page()" routerLink="/inicio">
+          <span class="nav-link acceso" id="acceso">  
+            </span>
+        </li>
+      </ul>
+    </div>
+
+    <div >
+      
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="miToken==0">
+          <a class="nav-link acceso" routerLink="/login" id="acceso"> <i class="fa-solid fa-user"></i> Inicio de
+            Sesión</a>
+        </li>
+        <li class="nav-item" *ngIf="miToken!=0" (click)="logout()" (click)="reload_page()" routerLink="/inicio">
+          <span class="nav-link acceso" id="acceso"> <i class="fa-solid fa-right-from-bracket"></i> Usuario:
+            {{nombreUsuario}} </span>
+        </li>
+      </ul>
+    </div>
+    
+      
+    
+  
+    
+    
+  </div>
+</nav>
