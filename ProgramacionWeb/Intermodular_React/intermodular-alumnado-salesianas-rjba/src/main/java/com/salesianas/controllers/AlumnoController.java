@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.salesianas.dto.AlumnoDto;
+import com.salesianas.exception.AlumnoNotFoundException;
 import com.salesianas.repositories.Alumno;
 import com.salesianas.services.AlumnoServiceI;
 
@@ -40,23 +41,33 @@ public class AlumnoController {
 	}
 	
 	@PutMapping("/modificar/{id}")
-	public ResponseEntity<Alumno> modificarAlumno(final @RequestBody AlumnoDto alumno,final @PathVariable Long id) {
-		try {
-			Alumno modificado = alumnoService.modificarAlumno(alumno, id);
-			return new ResponseEntity<> (modificado, HttpStatus.NO_CONTENT);
-		} catch(Exception e) {
-			return new ResponseEntity<> (new Alumno(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	public Alumno modificarAlumno(final @RequestBody AlumnoDto dto,final @PathVariable Long id) {
+
+		return alumnoService.buscarPorMatriculaOptional(id)
+				.map(alumno->{
+					 alumno.setNombre(dto.getNombre());
+					 alumno.setGrupo(dto.getGrupo());
+					 return alumnoService.modificarAlumno(alumno);
+				}).orElseThrow(()->new AlumnoNotFoundException(id));
 	}
 	
 	@DeleteMapping("/eliminar/{id}")
-	public ResponseEntity<String> eliminarAlumno(final @PathVariable Long id) {
-		try {
-			alumnoService.eliminarAlumno(id);
-			return new ResponseEntity<> ("Alumno eliminado", HttpStatus.OK);			
-		} catch(Exception e) {
-			return new ResponseEntity<> ("Error, alumno no encontrado", HttpStatus.INTERNAL_SERVER_ERROR);
+	public String eliminarAlumno(final @PathVariable Long id) {
+
+		if(!alumnoService.alumnoExiste(id)) {
+			throw new AlumnoNotFoundException(id);
 		}
+		
+		alumnoService.eliminarAlumno(id);
+		return "El alumno con nº de matrícula " + id + " ha sido eliminado con éxito.";
+		
+		
+		//		try {
+//			alumnoService.eliminarAlumno(id);
+//			return new ResponseEntity<> ("Alumno eliminado", HttpStatus.OK);			
+//		} catch(Exception e) {
+//			return new ResponseEntity<> ("Error, alumno no encontrado", HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
 		
 	}
 
@@ -71,12 +82,14 @@ public class AlumnoController {
 	
 	
 	@GetMapping ("/{id}")
-	public ResponseEntity<Alumno> buscarPorId(@PathVariable Long id) {
-		try {
-			return new ResponseEntity<> ( alumnoService.buscarPorMatricula(id), HttpStatus.OK);
-		} catch(Exception e) {
-			return new ResponseEntity<> (new Alumno(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	public Alumno buscarPorId(@PathVariable Long id) {
+		
+		return alumnoService.buscarPorMatriculaOptional(id).orElseThrow(()->new AlumnoNotFoundException(id));
+		//		try {
+//			return new ResponseEntity<> ( alumnoService.buscarPorMatricula(id), HttpStatus.OK);
+//		} catch(Exception e) {
+//			return new ResponseEntity<> (new Alumno(), HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
 	}
 	
 	@GetMapping ("/nombre/{nombre}")

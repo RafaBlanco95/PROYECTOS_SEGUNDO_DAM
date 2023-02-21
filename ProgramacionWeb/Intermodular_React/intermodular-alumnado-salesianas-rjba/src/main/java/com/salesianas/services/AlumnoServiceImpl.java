@@ -1,6 +1,7 @@
 package com.salesianas.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,19 +26,16 @@ public class AlumnoServiceImpl implements AlumnoServiceI {
 	}
 
 	@Override
-	public Alumno modificarAlumno(AlumnoDto dto, Long id) {
-		
-			Alumno nuevo=alumnoRepo.findByMatricula(id);
-			nuevo.setNombre(dto.getNombre());
-			nuevo.setGrupo(dto.getGrupo());
-			return alumnoRepo.save(nuevo);
+	public Alumno modificarAlumno(Alumno alumno) {
+
+			return alumnoRepo.save(alumno);
 		
 	}
 
 	@Override
 	public void eliminarAlumno(Long id) {
 		
-		alumnoRepo.delete(alumnoRepo.findByMatricula(id));
+		alumnoRepo.deleteById(id);
 		
 	}
 
@@ -63,6 +61,18 @@ public class AlumnoServiceImpl implements AlumnoServiceI {
 	public List<Alumno> buscarTodos() {
 		
 		return alumnoRepo.findAll();
+	}
+
+	@Override
+	public Optional<Alumno> buscarPorMatriculaOptional(Long id) {
+		
+		return alumnoRepo.findById(id);
+	}
+
+	@Override
+	public boolean alumnoExiste(Long id) {
+		
+		return alumnoRepo.existsById(id);
 	}
 	
 	
