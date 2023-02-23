@@ -10,4 +10,5 @@ public interface PracticaRepositoryI extends JpaRepository<Practica, Long>{
 
 	List<Practica> findByTitulo(String titulo);
 	List<Practica> findByDificultad(int dificultad);
+	Practica findByCodigoPractica(Long codigoPractica);
 }

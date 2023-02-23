@@ -31,7 +31,7 @@ public class Practica implements Serializable {
 	@Column(name = "C_DIFICULTAD_PRACTICA")
 	private int dificultad;
 
-	@OneToMany(mappedBy = "practica", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "practica", cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<AlumnoPractica> alumnos;
 
 	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)

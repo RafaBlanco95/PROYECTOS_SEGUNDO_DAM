@@ -6,14 +6,11 @@ public class PracticaDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long codigoPractica;
-
 	private String titulo;
 
 	private int dificultad;
 
-	public PracticaDto(Long codigoPractica, String titulo, int dificultad) {
-		this.codigoPractica = codigoPractica;
+	public PracticaDto(String titulo, int dificultad) {
 		this.titulo = titulo;
 		this.dificultad = dificultad;
 	}
@@ -22,13 +19,6 @@ public class PracticaDto implements Serializable {
 
 	}
 
-	public Long getCodigoPractica() {
-		return codigoPractica;
-	}
-
-	public void setCodigoPractica(Long codigoPractica) {
-		this.codigoPractica = codigoPractica;
-	}
 
 	public String getTitulo() {
 		return titulo;

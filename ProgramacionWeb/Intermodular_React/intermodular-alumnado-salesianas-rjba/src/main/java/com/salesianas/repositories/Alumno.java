@@ -1,8 +1,8 @@
 package com.salesianas.repositories;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,8 +36,14 @@ public class Alumno implements Serializable{
 	private List<AlumnoControl> controles;
 	
 	@OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<AlumnoPractica> practicas;
+	private List<AlumnoPractica> practicas= new ArrayList<>();
 
+	public void asignarPractica(Practica practica) {
+		AlumnoPractica alumnoPractica=new AlumnoPractica(this,practica);
+		practicas.add(alumnoPractica);
+		practica.getAlumnos().add(alumnoPractica); 
+	}
+	
 	public Long getMatricula() {
 		return matricula;
 	}

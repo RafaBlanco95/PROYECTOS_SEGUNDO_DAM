@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class AlumnoPractica implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-		@Column(name="ID")
+		
 		@EmbeddedId
 	    private AlumnoPracticaId id;
 	 
@@ -41,6 +41,12 @@ public class AlumnoPractica implements Serializable{
 			this.practica = practica;
 			this.createdOn = createdOn;
 			this.nota = nota;
+		}
+		
+		public AlumnoPractica(Alumno alumno, Practica practica) {
+			this.alumno=alumno;
+			this.practica=practica;
+			this.id=new AlumnoPracticaId(alumno.getMatricula(), practica.getCodigoPractica());
 		}
 
 		public AlumnoPractica() {
