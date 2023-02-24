@@ -11,10 +11,10 @@ public class AlumnoPracticaId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "C_ALUMNO_ID")
+	@Column(name = "alumno")
 	private Long alumnoId;
 
-	@Column(name = "C_PRACTICA_ID")
+	@Column(name = "practica")
 	private Long practicaId;
 	
 	

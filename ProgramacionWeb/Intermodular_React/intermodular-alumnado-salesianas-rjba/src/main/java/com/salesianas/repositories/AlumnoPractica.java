@@ -1,7 +1,8 @@
 package com.salesianas.repositories;
 
-import java.io.Serializable;
 
+
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -14,9 +15,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "T_ALUMNO_PRACTICA")
-public class AlumnoPractica implements Serializable{
+public class AlumnoPractica {
 
-	private static final long serialVersionUID = 1L;
+	
 		
 		@EmbeddedId
 	    private AlumnoPracticaId id;
@@ -30,16 +31,16 @@ public class AlumnoPractica implements Serializable{
 	    private Practica practica;
 	 
 	    @Column(name = "FECHA")
-	    private String createdOn;
+	    private LocalDate fecha;
 	    
 	    @Column(name = "NOTA")
 	    private Double nota;
 
-		public AlumnoPractica(AlumnoPracticaId id, Alumno alumno, Practica practica, String createdOn, Double nota) {
+		public AlumnoPractica(AlumnoPracticaId id, Alumno alumno, Practica practica, LocalDate createdOn, Double nota) {
 			this.id = id;
 			this.alumno = alumno;
 			this.practica = practica;
-			this.createdOn = createdOn;
+			this.fecha = createdOn;
 			this.nota = nota;
 		}
 		
@@ -78,12 +79,12 @@ public class AlumnoPractica implements Serializable{
 			this.practica = practica;
 		}
 
-		public String getCreatedOn() {
-			return createdOn;
+		public LocalDate getFecha() {
+			return fecha;
 		}
 
-		public void setCreatedOn(String createdOn) {
-			this.createdOn = createdOn;
+		public void setFecha(LocalDate fecha) {
+			this.fecha = fecha;
 		}
 
 		public Double getNota() {

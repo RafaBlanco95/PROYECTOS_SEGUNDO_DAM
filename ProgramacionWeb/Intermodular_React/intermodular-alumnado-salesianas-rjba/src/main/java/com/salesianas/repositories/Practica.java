@@ -1,6 +1,7 @@
 package com.salesianas.repositories;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "T_PRACTICA")
@@ -31,8 +34,9 @@ public class Practica implements Serializable {
 	@Column(name = "C_DIFICULTAD_PRACTICA")
 	private int dificultad;
 
-	@OneToMany(mappedBy = "practica", cascade = CascadeType.PERSIST, orphanRemoval = true)
-	private List<AlumnoPractica> alumnos;
+	@JsonIgnore
+	@OneToMany(mappedBy = "practica", cascade = CascadeType.ALL)
+	private List<AlumnoPractica> alumnos= new ArrayList<>();
 
 	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Profesor> profesores;
@@ -91,10 +95,18 @@ public class Practica implements Serializable {
 		this.profesores = profesores;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	 
+	@Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Practica)) return false;
+        return codigoPractica != null && codigoPractica.equals(((Practica) o).getCodigoPractica());
+	}
 	
 	
 }

@@ -19,16 +19,7 @@ public class IntermodularAlumnadoSalesianasRjbaApplication  implements CommandLi
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
-		
-//		Alumno alumno=alumnoService.buscarPorMatricula(7l);
-//		Practica practica=practicaRepo.getById(2l);
-//		AlumnoPractica alumnoPractica= new AlumnoPractica(alumno,practica);
-//		alumnoPracticaRepo.save(alumnoPractica);
-//		 System.out.println(alumnoPracticaRepo.count());
-//		
-		
-		
+	public void run(String... args) throws Exception {		
 		
 	}
 }

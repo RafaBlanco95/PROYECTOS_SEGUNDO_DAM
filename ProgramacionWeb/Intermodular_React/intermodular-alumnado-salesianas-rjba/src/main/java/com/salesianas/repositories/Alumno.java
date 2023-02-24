@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "T_ALUMNO")
 public class Alumno implements Serializable{
@@ -32,10 +34,11 @@ public class Alumno implements Serializable{
 	@Column(name = "C_ALUMNO_GRUPO", nullable = false)
 	private String grupo;
 	
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "alumno")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "alumno")
 	private List<AlumnoControl> controles;
 	
-	@OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
+	@OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
 	private List<AlumnoPractica> practicas= new ArrayList<>();
 
 	public void asignarPractica(Practica practica) {
@@ -76,6 +79,16 @@ public class Alumno implements Serializable{
 		this.practicas = practicas;
 	}
 
+	@Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Alumno)) return false;
+        return matricula != null && matricula.equals(((Alumno) o).getMatricula());
+	}
 
 }

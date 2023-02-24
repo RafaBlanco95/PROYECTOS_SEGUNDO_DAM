@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.salesianas.dto.AlumnoDto;
+import com.salesianas.dto.AlumnoPracticaDto;
 import com.salesianas.exception.AlumnoNotFoundException;
 import com.salesianas.repositories.Alumno;
 import com.salesianas.repositories.AlumnoPractica;
-import com.salesianas.repositories.AlumnoPracticaRepositoryI;
 import com.salesianas.repositories.Practica;
 import com.salesianas.services.AlumnoServiceI;
 import com.salesianas.services.PracticaServiceI;
@@ -32,10 +32,10 @@ public class AlumnoController {
 
 	@Autowired
 	private AlumnoServiceI alumnoService;
-	@Autowired
-	private AlumnoPracticaRepositoryI alumnoPracticaRepo;
+
 	@Autowired
 	private PracticaServiceI practicaService;
+
 
 	@PostMapping("/nuevo")
 	public ResponseEntity<Alumno>  crearAlumno(final @RequestBody AlumnoDto alumno) {
@@ -70,14 +70,6 @@ public class AlumnoController {
 		alumnoService.eliminarAlumno(id);
 		return "El alumno con nº de matrícula " + id + " ha sido eliminado con éxito.";
 		
-		
-		//		try {
-//			alumnoService.eliminarAlumno(id);
-//			return new ResponseEntity<> ("Alumno eliminado", HttpStatus.OK);			
-//		} catch(Exception e) {
-//			return new ResponseEntity<> ("Error, alumno no encontrado", HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-		
 	}
 
 	@GetMapping 
@@ -94,11 +86,7 @@ public class AlumnoController {
 	public Alumno buscarPorId(@PathVariable Long id) {
 		
 		return alumnoService.buscarPorMatriculaOptional(id).orElseThrow(()->new AlumnoNotFoundException(id));
-		//		try {
-//			return new ResponseEntity<> ( alumnoService.buscarPorMatricula(id), HttpStatus.OK);
-//		} catch(Exception e) {
-//			return new ResponseEntity<> (new Alumno(), HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
+		
 	}
 	
 	@GetMapping ("/nombre/{nombre}")
@@ -120,19 +108,35 @@ public class AlumnoController {
 	}
 	
 	@PostMapping("/{idAlumno}/hacerPractica/{idPractica}")
-	public ResponseEntity<List<AlumnoPractica>> asociarPractica(@PathVariable Long idAlumno, @PathVariable Long idPractica,final @RequestBody AlumnoPractica alumnoPractica){
+	public AlumnoPractica asociarPractica(@PathVariable Long idAlumno, @PathVariable Long idPractica, final @RequestBody AlumnoPracticaDto dto){
 		Alumno alumno= alumnoService.buscarPorMatricula(idAlumno);
 		Practica practica= practicaService.buscarPorId(idPractica);
-		alumno.asignarPractica(practica);
-//		AlumnoPractica alumnoPracticaNuevo= new AlumnoPractica(alumno,practica);
-//		alumnoPracticaNuevo.setNota(alumnoPractica.getNota());
-//		alumnoPracticaNuevo.setCreatedOn(alumnoPractica.getCreatedOn());
-//		alumnoPracticaNuevo.
-		try {
-			return new ResponseEntity<> ( alumno.getPracticas(), HttpStatus.OK);
-		} catch (Exception ex) {
-    		return new ResponseEntity<> (new ArrayList<>(),  HttpStatus.INTERNAL_SERVER_ERROR);
-    	}
+		
+		AlumnoPractica alumnoPractica=new AlumnoPractica(alumno,practica);
+		alumnoPractica.setNota(dto.getNota());
+		alumnoPractica.setFecha(dto.getFecha());
+		List<AlumnoPractica> alumnosPracticas= new ArrayList<>();
+		alumnosPracticas.add(alumnoPractica);
+		practica.setAlumnos(alumnosPracticas);
+		alumno.setPracticas(alumnosPracticas);
+	
+		alumnoService.modificarAlumno(alumno);
+		practicaService.modificarPractica(practica);
+		return alumnoPractica;
+		
+	}
+	
+	@GetMapping("/{id}/practicas")
+	public List<Practica> getPracticas(@PathVariable Long id){
+		List<Practica> result= new ArrayList<>();
+		Alumno alumno =alumnoService.buscarPorMatricula(id);
+		List <AlumnoPractica> alumnoPracticaLista=alumno.getPracticas();
+		for (AlumnoPractica a:alumnoPracticaLista) {
+			result.add(a.getPractica());		}
+		
+		
+		
+		return result;
 	}
 	
 }
