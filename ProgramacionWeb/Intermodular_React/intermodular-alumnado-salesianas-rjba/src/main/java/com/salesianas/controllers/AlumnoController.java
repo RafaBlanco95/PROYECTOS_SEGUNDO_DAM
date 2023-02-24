@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.salesianas.dto.AlumnoDto;
 import com.salesianas.dto.AlumnoPracticaDto;
+import com.salesianas.dto.AlumnoSalidaDto;
+import com.salesianas.dto.PracticaCompletaDto;
 import com.salesianas.exception.AlumnoNotFoundException;
 import com.salesianas.repositories.Alumno;
 import com.salesianas.repositories.AlumnoPractica;
@@ -83,11 +85,37 @@ public class AlumnoController {
 	
 	
 	@GetMapping ("/{id}")
-	public Alumno buscarPorId(@PathVariable Long id) {
+	public ResponseEntity<AlumnoSalidaDto> buscarPorId(@PathVariable Long id) {
 		
-		return alumnoService.buscarPorMatriculaOptional(id).orElseThrow(()->new AlumnoNotFoundException(id));
+		try {
+		AlumnoSalidaDto alumnoSalidaDto= new AlumnoSalidaDto();
+		Alumno alumno=alumnoService.buscarPorMatricula(id);
+		 alumnoSalidaDto.setMatricula(alumno.getMatricula());
+		 alumnoSalidaDto.setGrupo(alumno.getGrupo());
+		 alumnoSalidaDto.setNombre(alumno.getNombre());
+		 
+		 List<PracticaCompletaDto> practicas= new ArrayList<>();
 		
+			List <AlumnoPractica> alumnoPracticaLista=alumno.getPracticas();
+			
+			for (AlumnoPractica a:alumnoPracticaLista) {
+				PracticaCompletaDto practicaDto= new PracticaCompletaDto();
+				practicaDto.setCodigoPractica(a.getPractica().getCodigoPractica());
+				practicaDto.setTitulo(a.getPractica().getTitulo());
+				practicaDto.setDificultad(a.getPractica().getDificultad());
+				practicaDto.setFecha(a.getFecha());
+				practicaDto.setNota(a.getNota());
+				practicas.add(practicaDto);		
+				}
+			alumnoSalidaDto.setPracticas(practicas);
+		
+		return new ResponseEntity<> ( alumnoSalidaDto, HttpStatus.OK);
+	} catch(Exception e) {
+		return new ResponseEntity<> (new AlumnoSalidaDto(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+}
+		
+	
 	
 	@GetMapping ("/nombre/{nombre}")
 	public ResponseEntity<List<Alumno>> buscarPorNombre(@PathVariable String nombre) {
@@ -132,9 +160,8 @@ public class AlumnoController {
 		Alumno alumno =alumnoService.buscarPorMatricula(id);
 		List <AlumnoPractica> alumnoPracticaLista=alumno.getPracticas();
 		for (AlumnoPractica a:alumnoPracticaLista) {
-			result.add(a.getPractica());		}
-		
-		
+			result.add(a.getPractica());		
+			}
 		
 		return result;
 	}

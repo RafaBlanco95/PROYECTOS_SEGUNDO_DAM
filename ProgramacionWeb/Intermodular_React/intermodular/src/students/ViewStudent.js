@@ -5,20 +5,29 @@ import { Link, useParams } from 'react-router-dom'
 
 export default function ViewStudent() {
 
-    const [student,setStudent]=useState({
-        matricula:"",
-        nombre:"",
-        grupo:""
+    const [student, setStudent] = useState({
+        matricula: "",
+        nombre: "",
+        grupo: "",
+        practicas: [
+            {
+                codigoPractica: 0,
+                titulo: "",
+                dificultad: 0,
+                fecha:"",
+                nota:0
+            }
+        ]
     })
 
-    const {id}=useParams();
+    const { id } = useParams();
 
-    useEffect(()=>{
+    useEffect(() => {
         loadStudent()
-    },[])
+    }, [])
 
-    const loadStudent=async()=>{
-        const result=await axios.get(`http://localhost:8886/api/alumnos/${id}`)
+    const loadStudent = async () => {
+        const result = await axios.get(`http://localhost:8886/api/alumnos/${id}`)
         setStudent(result.data)
     }
     return (
@@ -28,7 +37,7 @@ export default function ViewStudent() {
                     <h2 className='text-center m-4'>Ficha del Alumno</h2>
                     <div className='card'>
                         <div className='card-header'>
-                            Ficha del Alumno con nº de matrícula:  
+                            Ficha del Alumno con nº de matrícula:
                             {student.matricula}
                             <ul className='list-group list-group-flush'>
                                 <li className='list-group-item'>
@@ -39,14 +48,54 @@ export default function ViewStudent() {
                                     <b>Grupo: </b>
                                     {student.grupo}
                                 </li>
+                                <li className='list-group-item'>
+                                    <b>Prácticas Realizadas: </b>
+                                    
+                                </li>
 
-                            </ul>
+
+                                <li className='list-group-item'>
+
+                                    <table class="table shadow">
+                                        <thead>
+                                            <tr class="table-primary">
+                                                <th scope="col">Código</th>
+                                                <th scope="col">Título</th>
+                                                <th scope="col">Dificultad</th>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Nota</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+
+                                           
+                                        student.practicas.map((practicas, index)=>(
+                                            <tr>
+                                                <th scope="row" key={index}>{practicas.codigoPractica}</th>
+                                                <td>{practicas.titulo}</td>
+                                                <td>{practicas.dificultad}</td>
+                                                <td>{practicas.fecha}</td>
+                                                <td>{practicas.nota}</td>
+                                                </tr>
+                                        ))
+                                        }
+                                                </tbody>
+                                            
+                                            </table>
+
+                                        </li>
+
+
+                                    </ul>
+                                </div>
                         </div>
+                        <Link className="btn btn-primary my-2" to={"/"}>Volver</Link>
                     </div>
-                    <Link className="btn btn-primary my-2" to={"/"}>Volver</Link>
+
                 </div>
             </div>
-        </div>
-    )
+            )
 
 }
