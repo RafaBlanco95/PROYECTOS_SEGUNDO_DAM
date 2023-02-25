@@ -1,33 +1,26 @@
 package com.salesianas.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class ControlDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long numeroControl;
-
 	private int preguntas;
 
-	private String fecha;
+	private LocalDate fecha;
 
-	public ControlDto(Long numeroControl, int preguntas, String fecha) {
-		this.numeroControl = numeroControl;
+	private String nombre;
+
+	public ControlDto(int preguntas, LocalDate fecha, String nombre) {
 		this.preguntas = preguntas;
 		this.fecha = fecha;
+		this.nombre = nombre;
 	}
 
 	public ControlDto() {
 
-	}
-
-	public Long getNumeroControl() {
-		return numeroControl;
-	}
-
-	public void setNumeroControl(Long numeroControl) {
-		this.numeroControl = numeroControl;
 	}
 
 	public int getPreguntas() {
@@ -38,12 +31,20 @@ public class ControlDto implements Serializable {
 		this.preguntas = preguntas;
 	}
 
-	public String getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }

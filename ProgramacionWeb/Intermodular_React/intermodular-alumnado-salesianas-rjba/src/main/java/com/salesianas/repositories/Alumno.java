@@ -18,8 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "T_ALUMNO")
-public class Alumno implements Serializable{
-
+public class Alumno implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,26 +26,27 @@ public class Alumno implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "C_ALUMNO_MATRICULA", nullable = false)
 	private Long matricula;
-	
+
 	@Column(name = "C_ALUMNO_NOMBRE", nullable = false)
 	private String nombre;
-	
+
 	@Column(name = "C_ALUMNO_GRUPO", nullable = false)
 	private String grupo;
-	
+
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "alumno")
 	private List<AlumnoControl> controles;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
-	private List<AlumnoPractica> practicas= new ArrayList<>();
+	private List<AlumnoPractica> practicas = new ArrayList<>();
 
 	public void asignarPractica(Practica practica) {
-		AlumnoPractica alumnoPractica=new AlumnoPractica(this,practica);
+		AlumnoPractica alumnoPractica = new AlumnoPractica(this, practica);
 		practicas.add(alumnoPractica);
-		practica.getAlumnos().add(alumnoPractica); 
+		practica.getAlumnos().add(alumnoPractica);
 	}
-	
+
 	public Long getMatricula() {
 		return matricula;
 	}
@@ -79,16 +79,26 @@ public class Alumno implements Serializable{
 		this.practicas = practicas;
 	}
 
+	public List<AlumnoControl> getControles() {
+		return controles;
+	}
+
+	public void setControles(List<AlumnoControl> controles) {
+		this.controles = controles;
+	}
+
 	@Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
-	
+	public int hashCode() {
+		return getClass().hashCode();
+	}
+
 	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Alumno)) return false;
-        return matricula != null && matricula.equals(((Alumno) o).getMatricula());
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof Alumno))
+			return false;
+		return matricula != null && matricula.equals(((Alumno) o).getMatricula());
 	}
 
 }

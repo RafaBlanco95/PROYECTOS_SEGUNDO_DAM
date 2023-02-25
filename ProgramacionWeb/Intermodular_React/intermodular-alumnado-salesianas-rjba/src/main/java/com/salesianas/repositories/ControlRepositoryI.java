@@ -10,4 +10,6 @@ public interface ControlRepositoryI extends JpaRepository<Control, Long>{
 
 	List<Control> findByPreguntas(final int preguntas);
 	List<Control> findByFecha(final String fecha);
+	List<Control> findByNombre(final String nombre);
+	Control findByNumeroControl(final Long numeroControl);
 }

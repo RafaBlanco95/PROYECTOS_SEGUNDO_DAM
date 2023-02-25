@@ -14,8 +14,17 @@ export default function ViewStudent() {
                 codigoPractica: 0,
                 titulo: "",
                 dificultad: 0,
-                fecha:"",
-                nota:0
+                fecha: "",
+                nota: 0
+            }
+        ],
+        controles: [
+            {
+                numeroControl: 0,
+                nombre: "",
+                preguntas: 0,
+                fecha: "",
+                nota: 0
             }
         ]
     })
@@ -50,10 +59,7 @@ export default function ViewStudent() {
                                 </li>
                                 <li className='list-group-item'>
                                     <b>Prácticas Realizadas: </b>
-                                    
                                 </li>
-
-
                                 <li className='list-group-item'>
 
                                     <table class="table shadow">
@@ -64,38 +70,68 @@ export default function ViewStudent() {
                                                 <th scope="col">Dificultad</th>
                                                 <th scope="col">Fecha</th>
                                                 <th scope="col">Nota</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {
+                                                student.practicas.map((practicas, index) => (
+                                                    <tr>
+                                                        <th scope="row" key={index}>{practicas.codigoPractica}</th>
+                                                        <td>{practicas.titulo}</td>
+                                                        <td>{practicas.dificultad}</td>
+                                                        <td>{practicas.fecha}</td>
+                                                        <td>{practicas.nota}</td>
+                                                    </tr>
+                                                ))
+                                            }
+                                        </tbody>
 
-                                           
-                                        student.practicas.map((practicas, index)=>(
-                                            <tr>
-                                                <th scope="row" key={index}>{practicas.codigoPractica}</th>
-                                                <td>{practicas.titulo}</td>
-                                                <td>{practicas.dificultad}</td>
-                                                <td>{practicas.fecha}</td>
-                                                <td>{practicas.nota}</td>
-                                                </tr>
-                                        ))
-                                        }
-                                                </tbody>
-                                            
-                                            </table>
+                                    </table>
+                                </li>
+                                <Link className='btn btn-outline-danger mx-2' to={`/student/${id}/dopractice`}>Hacer Practica</Link>
+                                <li className='list-group-item'>
+                                    <b>Exámenes Realizados: </b>
+                                </li>
+                                <li className='list-group-item'>
 
-                                        </li>
+                                    <table class="table shadow">
+                                        <thead>
+                                            <tr class="table-primary">
+                                                <th scope="col">Id del Examen</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Nº de Preguntas</th>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Nota</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                student.controles.map((controles, index) => (
+                                                    <tr>
+                                                        <th scope="row" key={index}>{controles.numeroControl}</th>
+                                                        <td>{controles.nombre}</td>
+                                                        <td>{controles.preguntas}</td>
+                                                        <td>{controles.fecha}</td>
+                                                        <td>{controles.nota}</td>
+                                                    </tr>
+                                                ))
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </li>
 
 
-                                    </ul>
-                                </div>
+                            </ul>
                         </div>
-                        <Link className="btn btn-primary my-2" to={"/"}>Volver</Link>
+                        
+                        <Link className='btn btn-outline-danger mx-2' to={`/student/${id}/doexam`}>Hacer Examen</Link>
                     </div>
-
+                    <Link className="btn btn-primary my-2" to={"/students"}>Volver</Link>
                 </div>
+
             </div>
-            )
+        </div>
+    )
 
 }

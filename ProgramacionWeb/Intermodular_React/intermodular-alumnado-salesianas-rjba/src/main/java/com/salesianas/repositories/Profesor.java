@@ -17,21 +17,21 @@ import javax.persistence.Table;
 public class Profesor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "C_ID_PROFESOR", nullable = false)
-	private Long id;
+	@Column(name = "C_NUMERO_DOCENTE_PROFESOR", nullable = false)
+	private Long numeroDocente;
 	@Column(name = "C_NOMBRE_PROFESOR")
 	private String nombre;
 	
 	@Column(name = "C_DNI_PROFESOR")
 	private String dni;
 	
-	@ManyToMany(mappedBy="profesores",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="profesores", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Practica> practicas;
 	
 	
-	public Profesor(Long id, String nombre, String dni, List<Practica> practicas) {
+	public Profesor(Long numeroDocente, String nombre, String dni, List<Practica> practicas) {
 		
-		this.id = id;
+		this.numeroDocente = numeroDocente;
 		this.nombre = nombre;
 		this.dni = dni;
 		this.practicas = practicas;
@@ -41,12 +41,14 @@ public class Profesor {
 		
 	}
 
-	public Long getId() {
-		return id;
+	
+	
+	public Long getNumeroDocente() {
+		return numeroDocente;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setNumeroDocente(Long numeroDocente) {
+		this.numeroDocente = numeroDocente;
 	}
 
 	public String getNombre() {

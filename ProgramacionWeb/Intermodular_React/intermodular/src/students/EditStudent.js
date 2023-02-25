@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ export default function EditStudent() {
         const onSubmit= async(e)=>{
             e.preventDefault();
             await axios.put(`http://localhost:8886/api/alumnos/modificar/${id}`,student)
-            navigate("/")
+            navigate("/students")
         }
 
 
@@ -54,7 +54,7 @@ export default function EditStudent() {
                     <input type={"text"} className="form-control"  placeholder='Grupo del Alumno' name="grupo" value={grupo} onChange={(e)=>onInputChange(e)}/>
                 </div>
                 <button type="submit" className='btn btn-outline-primary'>Registrar</button>
-                <Link className='btn btn-outline-danger mx-2' to="/">Cancelar</Link>
+                <Link className='btn btn-outline-danger mx-2' to="/students">Cancelar</Link>
                 </form>            
             </div>
         </div>

@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.salesianas.dto.AlumnoCompletoDto;
 import com.salesianas.dto.PracticaDto;
+import com.salesianas.dto.PracticaSalidaDto;
 import com.salesianas.exception.PracticaNotFoundException;
+import com.salesianas.repositories.AlumnoPractica;
 import com.salesianas.repositories.Practica;
 import com.salesianas.services.PracticaServiceI;
 
@@ -71,9 +75,32 @@ public class PracticaController {
 	
 	
 	@GetMapping ("/{id}")
-	public Practica buscarPorId(@PathVariable Long id) {
+	public ResponseEntity<PracticaSalidaDto> buscarPorId(@PathVariable Long id) {
+		try {
 		
-		return practicaService.buscarPorCodigoPracticaOptional(id).orElseThrow(()->new PracticaNotFoundException(id));
+		PracticaSalidaDto practicaSalidaDto= new PracticaSalidaDto();
+		Practica practica= practicaService.buscarPorId(id);
+		practicaSalidaDto.setCodigoPractica(practica.getCodigoPractica());
+		practicaSalidaDto.setTitulo(practica.getTitulo());
+		practicaSalidaDto.setDificultad(practica.getDificultad());
+		
+		List<AlumnoCompletoDto> alumnos= new ArrayList<>();
+		
+		List<AlumnoPractica> alumnoPracticas=practica.getAlumnos();
+		for(AlumnoPractica a: alumnoPracticas) {
+			AlumnoCompletoDto alumnoDto= new AlumnoCompletoDto();
+			alumnoDto.setMatricula(a.getAlumno().getMatricula());
+			alumnoDto.setNombre(a.getAlumno().getNombre());
+			alumnoDto.setGrupo(a.getAlumno().getGrupo());
+			alumnoDto.setFecha(a.getFecha());
+			alumnoDto.setNota(a.getNota());
+			alumnos.add(alumnoDto);
+		}
+		practicaSalidaDto.setAlumnos(alumnos);
+		return new ResponseEntity<> ( practicaSalidaDto, HttpStatus.OK);	
+	} catch(Exception e) {
+		return new ResponseEntity<> (new PracticaSalidaDto(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	}
 	
 	@GetMapping ("/titulo/{titulo}")

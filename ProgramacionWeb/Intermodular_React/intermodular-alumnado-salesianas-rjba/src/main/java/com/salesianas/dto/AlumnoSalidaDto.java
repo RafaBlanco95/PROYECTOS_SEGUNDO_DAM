@@ -13,18 +13,19 @@ public class AlumnoSalidaDto {
 	private String grupo;
 	
 	private List<PracticaCompletaDto> practicas;
+	
+	private List<ExamenCompletoDto> controles;
 
-	
-	
 	
 	public AlumnoSalidaDto() {
 	}
 
-	public AlumnoSalidaDto(Long matricula, String nombre, String grupo, List<PracticaCompletaDto> practicas) {
+	public AlumnoSalidaDto(Long matricula, String nombre, String grupo, List<PracticaCompletaDto> practicas, List<ExamenCompletoDto> controles) {
 		this.matricula = matricula;
 		this.nombre = nombre;
 		this.grupo = grupo;
 		this.practicas = practicas;
+		this.controles=controles;
 	}
 
 	public Long getMatricula() {
@@ -57,6 +58,14 @@ public class AlumnoSalidaDto {
 
 	public void setPracticas(List<PracticaCompletaDto> practicas) {
 		this.practicas = practicas;
+	}
+
+	public List<ExamenCompletoDto> getControles() {
+		return controles;
+	}
+
+	public void setControles(List<ExamenCompletoDto> controles) {
+		this.controles = controles;
 	}
 
 	

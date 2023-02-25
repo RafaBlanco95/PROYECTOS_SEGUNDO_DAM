@@ -3,58 +3,8 @@ import axios from "axios"
 import { Link, useParams } from 'react-router-dom';
 
 export default function Home() {
-
-    const [students, setStudents]=useState([]);
-
-    const {id}=useParams()
-
-    useEffect(()=>{
-        loadStudents();
-    },[]);
-
-    const loadStudents=async ()=>{
-        const result= await axios.get("http://localhost:8886/api/alumnos");
-        setStudents(result.data);
-    };
-
-    const deleteStudent=async (id)=>{
-      await axios.delete(`http://localhost:8886/api/alumnos/eliminar/${id}`)
-      loadStudents()
+    return (
+       <div>Hello world!</div>
+      )
     }
-
-  return (
-    <div className="container">
-        <div className="py-4">
-
-<table class="table shadow">
-  <thead>
-    <tr class="table-primary">
-      <th scope="col">Nº Matrícula</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Grupo</th>
-      <th scope="col">Acciones</th>
-  
-    </tr>
-  </thead>
-  <tbody>
-{
-    students.map((student,index)=>(
-        <tr>
-      <th scope="row" key={index}>{student.matricula}</th>
-      <td>{student.nombre}</td>
-      <td>{student.grupo}</td>
-      <td> 
-          <Link className="btn btn-primary mx-2" to={`/viewstudent/${student.matricula}`}>Detalles</Link>
-          <Link className="btn btn-outline-primary mx-2" to={`/editstudent/${student.matricula}`}>Editar</Link>
-          <button className="btn btn-danger mx-2" onClick={()=>deleteStudent(student.matricula)}>Eliminar</button>
-      </td>
-    </tr>
-    ))
-}   
-  </tbody>
-</table>
-        </div>
-
-    </div>
-  )
-}
+    

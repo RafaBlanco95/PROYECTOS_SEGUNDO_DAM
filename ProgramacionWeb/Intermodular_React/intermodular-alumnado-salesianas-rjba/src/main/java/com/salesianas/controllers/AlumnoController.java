@@ -16,15 +16,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.salesianas.dto.AlumnoControlDto;
 import com.salesianas.dto.AlumnoDto;
 import com.salesianas.dto.AlumnoPracticaDto;
 import com.salesianas.dto.AlumnoSalidaDto;
+import com.salesianas.dto.ExamenCompletoDto;
 import com.salesianas.dto.PracticaCompletaDto;
 import com.salesianas.exception.AlumnoNotFoundException;
 import com.salesianas.repositories.Alumno;
+import com.salesianas.repositories.AlumnoControl;
 import com.salesianas.repositories.AlumnoPractica;
+import com.salesianas.repositories.Control;
 import com.salesianas.repositories.Practica;
 import com.salesianas.services.AlumnoServiceI;
+import com.salesianas.services.ControlServiceI;
 import com.salesianas.services.PracticaServiceI;
 
 @RestController
@@ -37,6 +42,8 @@ public class AlumnoController {
 
 	@Autowired
 	private PracticaServiceI practicaService;
+	@Autowired
+	private ControlServiceI controlService;
 
 
 	@PostMapping("/nuevo")
@@ -108,6 +115,21 @@ public class AlumnoController {
 				practicas.add(practicaDto);		
 				}
 			alumnoSalidaDto.setPracticas(practicas);
+			
+			List<ExamenCompletoDto> controles= new ArrayList<>();
+			
+			List<AlumnoControl>alumnoControlLista=alumno.getControles();
+			
+			for(AlumnoControl b:alumnoControlLista) {
+				ExamenCompletoDto controlDto= new ExamenCompletoDto();
+				controlDto.setNumeroControl(b.getControl().getNumeroControl());
+				controlDto.setNombre(b.getControl().getNombre());
+				controlDto.setPreguntas(b.getControl().getPreguntas());
+				controlDto.setFecha(b.getControl().getFecha());
+				controlDto.setNota(b.getNota());
+				controles.add(controlDto);
+			}
+			alumnoSalidaDto.setControles(controles);
 		
 		return new ResponseEntity<> ( alumnoSalidaDto, HttpStatus.OK);
 	} catch(Exception e) {
@@ -152,6 +174,23 @@ public class AlumnoController {
 		practicaService.modificarPractica(practica);
 		return alumnoPractica;
 		
+	}
+	
+	@PostMapping("/{idAlumno}/hacerControl/{idControl}")
+	public AlumnoControl asociarControl(@PathVariable Long idAlumno, @PathVariable Long idControl, final @RequestBody AlumnoControlDto dto) {
+		Alumno alumno= alumnoService.buscarPorMatricula(idAlumno);
+		Control control= controlService.buscarPorId(idControl);
+		
+		AlumnoControl alumnoControl= new AlumnoControl(alumno,control);
+		alumnoControl.setNota(dto.getNota());
+		List<AlumnoControl> alumnosControles= new ArrayList<>();
+		alumnosControles.add(alumnoControl);
+		control.setAlumnos(alumnosControles);
+		alumno.setControles(alumnosControles);
+		
+		alumnoService.modificarAlumno(alumno);
+		controlService.modificarControl(control);
+		return alumnoControl;
 	}
 	
 	@GetMapping("/{id}/practicas")

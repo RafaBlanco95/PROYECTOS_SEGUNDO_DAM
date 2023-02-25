@@ -38,6 +38,7 @@ public class Practica implements Serializable {
 	@OneToMany(mappedBy = "practica", cascade = CascadeType.ALL)
 	private List<AlumnoPractica> alumnos= new ArrayList<>();
 
+	@JsonIgnore
 	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Profesor> profesores;
 	

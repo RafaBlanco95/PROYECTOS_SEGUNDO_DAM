@@ -16,7 +16,7 @@ public class AlumnoControl implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="ID")
+	
 	@EmbeddedId
     private AlumnoControlId id;
  
@@ -40,7 +40,11 @@ public class AlumnoControl implements Serializable{
 		this.nota = nota;
 	}
 	
-	
+	public AlumnoControl(Alumno alumno, Control control) {
+		this.alumno=alumno;
+		this.control=control;
+		this.id= new AlumnoControlId(alumno.getMatricula(),control.getNumeroControl());
+	}
 
 	public AlumnoControl() {
 		

@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ export default function AddStudent() {
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:8886/api/alumnos/nuevo", student)
-        navigate("/")
+        navigate("/students")
     }
 
     return (
@@ -42,7 +42,7 @@ export default function AddStudent() {
                             <input type={"text"} className="form-control" placeholder='Grupo del Alumno' name="grupo" value={grupo} onChange={(e) => onInputChange(e)} />
                         </div>
                         <button type="submit" className='btn btn-outline-primary'>Registrar</button>
-                        <Link className='btn btn-outline-danger mx-2' to="/">Cancelar</Link>
+                        <Link className='btn btn-outline-danger mx-2' to="/students">Cancelar</Link>
                     </form>
                 </div>
             </div>
