@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.salesianas.dto.AlumnoCompletoDto;
 import com.salesianas.dto.PracticaDto;
 import com.salesianas.dto.PracticaSalidaDto;
+import com.salesianas.dto.ProfesorPracticaDto;
 import com.salesianas.exception.PracticaNotFoundException;
 import com.salesianas.repositories.AlumnoPractica;
 import com.salesianas.repositories.Practica;
+import com.salesianas.repositories.Profesor;
 import com.salesianas.services.PracticaServiceI;
 
 @RestController
@@ -97,6 +99,21 @@ public class PracticaController {
 			alumnos.add(alumnoDto);
 		}
 		practicaSalidaDto.setAlumnos(alumnos);
+		
+		
+		List<ProfesorPracticaDto> profesores= new ArrayList<>();
+		
+		List<Profesor> profesorPractica= practica.getProfesores();
+		
+		for(Profesor p:profesorPractica) {
+			ProfesorPracticaDto profesorDto= new ProfesorPracticaDto();
+			profesorDto.setNumeroDocente(p.getNumeroDocente());
+			profesorDto.setNombre(p.getNombre());
+			profesorDto.setDni(p.getDni());
+			profesores.add(profesorDto);
+		}
+		practicaSalidaDto.setProfesores(profesores);
+		
 		return new ResponseEntity<> ( practicaSalidaDto, HttpStatus.OK);	
 	} catch(Exception e) {
 		return new ResponseEntity<> (new PracticaSalidaDto(), HttpStatus.INTERNAL_SERVER_ERROR);

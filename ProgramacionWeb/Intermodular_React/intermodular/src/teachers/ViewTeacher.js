@@ -79,6 +79,9 @@ export default function ViewTeacher() {
                             </ul>
                         </div>
                         
+                        <Link className='btn btn-outline-danger mx-2' to={`/teacher/${id}/asignpractice`}>Asignar Practica</Link>
+
+                        
             
                     </div>
                     <Link className="btn btn-primary my-2" to={"/teachers"}>Volver</Link>

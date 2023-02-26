@@ -21,8 +21,8 @@ export default function TeacherAddPractice() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8886/api/practicas/nueva", practice)
-        navigate("/practices")
+        await axios.post(`http://localhost:8886/api/profesores/${id}/nuevaPractica`, practice)
+        navigate(`/viewteacher/${id}`)
     }
 
     return (
@@ -44,7 +44,7 @@ export default function TeacherAddPractice() {
                             <input type={"text"} className="form-control" placeholder='Dificultad de la Práctica' name="dificultad" value={dificultad} onChange={(e) => onInputChange(e)} />
                         </div>
                         <button type="submit" className='btn btn-outline-primary'>Registrar</button>
-                        <Link className='btn btn-outline-danger mx-2' to="/practices">Cancelar</Link>
+                        <Link className='btn btn-outline-danger mx-2' to={`/viewteacher/${id}`}>Cancelar</Link>
                     </form>
                 </div>
             </div>

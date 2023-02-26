@@ -80,7 +80,6 @@ export default function ViewExams() {
                                                 <th scope="row" key={index}>{alumnos.matricula}</th>
                                                 <td>{alumnos.nombre}</td>
                                                 <td>{alumnos.grupo}</td>
-
                                                 <td>{alumnos.nota}</td>
                                                 </tr>
                                         ))

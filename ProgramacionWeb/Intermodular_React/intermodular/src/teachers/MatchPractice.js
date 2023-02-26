@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
-export default function ViewPractice() {
+export default function MatchPractice() {
+
+    let navigate=useNavigate()
 
     const [practice, setPractice] = useState({
         
@@ -28,16 +30,22 @@ export default function ViewPractice() {
         ]
     })
 
-    const { id } = useParams();
+    const { id, id2 } = useParams();
 
     useEffect(() => {
         loadPractice()
     }, [])
 
     const loadPractice = async () => {
-        const result = await axios.get(`http://localhost:8886/api/practicas/${id}`)
+        const result = await axios.get(`http://localhost:8886/api/practicas/${id2}`)
         setPractice(result.data)
     }
+
+   
+    const asignTeacher=async (id,id2)=>{
+        await axios.get(`http://localhost:8886/api/profesores/${id}/hacerPractica/${id2}`)
+        loadPractice()
+      }
     return (
         <div className="container">
             <div className='row'>
@@ -135,10 +143,13 @@ export default function ViewPractice() {
                                         </li>
 
                                     </ul>
+                                    
+                                    <button type="submit" className='btn btn-outline-primary'  onClick={()=>asignTeacher(id,id2)}>Registrar</button>
+                                    
                                 </div>
                                 
                         </div>
-                        <Link className="btn btn-primary my-2" to={"/practices"}>Volver</Link>
+                        <Link className="btn btn-primary my-2" to={`/teacher/${id}/asignpractice`}>Volver</Link>
                     </div>
 
                 </div>

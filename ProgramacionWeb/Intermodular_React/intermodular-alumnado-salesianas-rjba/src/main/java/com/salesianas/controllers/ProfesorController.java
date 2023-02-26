@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.salesianas.dto.AlumnoPracticaDto;
+import com.salesianas.dto.PracticaDocenteDto;
+import com.salesianas.dto.PracticaDto;
 import com.salesianas.dto.PracticaProfesorDto;
 import com.salesianas.dto.ProfesorDto;
+import com.salesianas.dto.ProfesorPracticaDto;
 import com.salesianas.dto.ProfesorSalidaDto;
 import com.salesianas.exception.ProfesorNotFoundException;
-import com.salesianas.repositories.Alumno;
-import com.salesianas.repositories.AlumnoPractica;
 import com.salesianas.repositories.Practica;
 import com.salesianas.repositories.Profesor;
 import com.salesianas.services.PracticaServiceI;
@@ -111,7 +111,7 @@ public class ProfesorController {
 	@GetMapping("/{idProfesor}/hacerPractica/{idPractica}")
 	public Profesor asociarPractica(@PathVariable Long idProfesor, @PathVariable Long idPractica){
 		Practica practica= practicaService.buscarPorId(idPractica);
-		List<Profesor> profesores= new ArrayList<>();
+		List<Profesor> profesores= practica.getProfesores();
 		List<Practica> practicas= new ArrayList<>();
 		Profesor profesor=profesorService.buscarPorNumeroDocente(idProfesor);
 		profesores.add(profesor);
@@ -124,5 +124,32 @@ public class ProfesorController {
 		return profesor;
 		
 	}
+	
+	@PostMapping("/{idProfesor}/nuevaPractica")
+	public PracticaDocenteDto hacerPractica(@PathVariable Long idProfesor, @RequestBody PracticaDto dto) {
+		List<Profesor> profesores= new ArrayList<>();
+		Profesor profesor=profesorService.buscarPorNumeroDocente(idProfesor);
+		profesores.add(profesor);
+		Practica practica= practicaService.crearPractica(dto);
+		practica.setProfesores(profesores);
+		practicaService.modificarPractica(practica);
+		PracticaDocenteDto practicaDocente= new PracticaDocenteDto();
+		practicaDocente.setTitulo(practica.getTitulo());
+		practicaDocente.setDificultad(practica.getDificultad());
+		
+		List<ProfesorPracticaDto> docentes= new ArrayList<>();
+		
+		for(Profesor p: profesores) {
+			ProfesorPracticaDto profesorDto= new ProfesorPracticaDto();
+			profesorDto.setNumeroDocente(p.getNumeroDocente());
+			profesorDto.setNombre(p.getNombre());
+			profesorDto.setDni(p.getDni());
+			docentes.add(profesorDto);
+		}
+		
+		practicaDocente.setProfesores(docentes);
+		return practicaDocente;
+	}
+	
 	
 }

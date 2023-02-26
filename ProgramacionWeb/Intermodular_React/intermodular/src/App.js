@@ -25,6 +25,8 @@ import AddTeacher from './teachers/AddTeacher';
 import EditTeacher from './teachers/EditTeacher';
 import ViewTeacher from './teachers/ViewTeacher';
 import TeacherAddPractice from './teachers/TeacherAddPractice';
+import MatchPractice from './teachers/MatchPractice';
+import TeacherPracticeList from './teachers/TeacherPracticeList';
 
 
 function App() {
@@ -57,6 +59,8 @@ function App() {
         <Route exact path="/editteacher/:id" element={<EditTeacher/>}/>
         <Route exact path="/viewteacher/:id" element={<ViewTeacher/>}/>
         <Route exact path="/teacher/:id/dopractice" element={<TeacherAddPractice/>}/>
+        <Route exact path="/teacher/:id/asignpractice" element={<TeacherPracticeList/>}/>
+        <Route exact path="/teachers/:id/asignpractice/:id2" element={<MatchPractice/>}/>
       </Routes>
       
 

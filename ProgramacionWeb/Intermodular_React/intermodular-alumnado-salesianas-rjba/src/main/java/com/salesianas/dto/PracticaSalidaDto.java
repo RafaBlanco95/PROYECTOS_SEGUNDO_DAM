@@ -11,17 +11,20 @@ public class PracticaSalidaDto {
 	private int dificultad;
 
 	private List<AlumnoCompletoDto> alumnos;
+	
+	private List<ProfesorPracticaDto> profesores;
 
 	public PracticaSalidaDto() {
 
 	}
 
-	public PracticaSalidaDto(Long codigoPractica, String titulo, int dificultad, List<AlumnoCompletoDto> alumnos) {
+	public PracticaSalidaDto(Long codigoPractica, String titulo, int dificultad, List<AlumnoCompletoDto> alumnos, List<ProfesorPracticaDto> profesores) {
 
 		this.codigoPractica = codigoPractica;
 		this.titulo = titulo;
 		this.dificultad = dificultad;
 		this.alumnos = alumnos;
+		this.profesores=profesores;
 	}
 
 	public Long getCodigoPractica() {
@@ -56,4 +59,13 @@ public class PracticaSalidaDto {
 		this.alumnos = alumnos;
 	}
 
+	public List<ProfesorPracticaDto> getProfesores() {
+		return profesores;
+	}
+
+	public void setProfesores(List<ProfesorPracticaDto> profesores) {
+		this.profesores = profesores;
+	}
+
+	
 }
